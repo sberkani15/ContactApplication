@@ -1,0 +1,16 @@
+  .container {
+    width: 60%;
+    margin: auto;
+    border: solid 0.5px lightgray;
+    border-radius: 5px 5px 5px 5px;
+  }
+
+  .form-control {
+    width: 50%;
+  }
+
+  .thumb {
+    margin-left:60%;
+    border:solid 0.5px lightgray;
+
+  }

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="app/css/style.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+  <div class="form-container">
+    
+    <p>Création d'un nouveau contact :</p>
+
+    <div *ngIf="show_alert">
+      <div *ngFor="let alert of alerts">
+        <alert [type]="alert.type" dismissible="true">{{ alert.msg }}</alert>
+      </div>
+    </div>
+
+
+    <form #contactform="ngForm" (ngSubmit)="submitContact( contactform, $event)">
+      <div class="form-group" hidden>
+        <input type="text" class="form-control" [(ngModel)]="contact.id" name="id"  >
+      </div>
+
+      <div class="form-group">
+        <label>Civilité :</label>
+        <select class="form-control"  required [(ngModel)]="contact.civilite" name="civilite" [value]="contact.civilite">
+          <option>Mr</option>
+          <option>Mme</option>
+          <option>Mlle</option>
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label >Nom :</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.nom" name="nom" required maxlength="50" >
+      </div>
+
+
+      <div class="form-group">
+        <label >Prenom :</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.prenom" name="prenom" required maxlength="50">
+      </div>
+
+
+      <div class="form-group">
+        <label >Date de naissance :</label>
+        <input type="date" required class="form-control" [(ngModel)]="contact.date_naissance" name="date_naissance" [value]="contact.date_naissance" >
+      </div>
+
+
+      <div class="form-group">
+        <label >Mobile :</label>
+        <input type="tel" class="form-control" [(ngModel)]="contact.mobile" name="mobile" [required]="contact.fixe==''" placeholder="06..">
+      </div>
+
+
+      <div class="form-group">
+        <label >Fixe :</label>
+        <input type="tel" class="form-control" [(ngModel)]="contact.fixe" name="fixe" [required]="contact.mobile==''" placeholder="01..">
+      </div>
+
+
+      <div class="form-group">
+        <label>Email address</label>
+        <input type="email" class="form-control" [(ngModel)]="contact.mail" name="mail" required>
+      </div>
+
+
+      <div class="form-group">
+        <label>Remarques :</label>
+        <textarea class="form-control" rows="3" [(ngModel)]="contact.remarque" name="remarque"></textarea>
+      </div>
+
+      <div class="form-group">
+          <label >Photo :</label>
+          <label class="btn btn-primary btn-sm">
+            <input type="file" style="display: none;" (change)="browseImage($event)" accept=".png,.jpg , .jpeg, .gif" />Browse
+          </label>
+
+          <img [src]="contact.photo" class="img-circle" height="60" width="60" style="margin-left: 20%">
+
+          <div hidden>
+              <input type="text" [(ngModel)]="contact.photo" name="photo" >
+          </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+      <input type="button" class="btn btn-primary btn-sm" (click)="resetForm()" value="Annuler" />
+
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

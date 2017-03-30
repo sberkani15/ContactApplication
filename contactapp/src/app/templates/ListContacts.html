@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lister des contacts :</title>
+</head>
+<body>
+
+<div class="container">
+  <h2>Liste des contacts :</h2>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Civilité</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Date de naissance</th>
+        <th>Mobile</th>
+        <th>Fixe</th>
+        <th>Email</th>
+        <th>Remarque</th>
+        <th>Photo</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let contact of CONTACTS">
+      <tr>
+        <td>{{contact.id}}</td>
+        <td>{{contact.civilite}}</td>
+        <td>{{contact.nom}}</td>
+        <td>{{contact.prenom}}</td>
+        <td>{{contact.date_naissance}}</td>
+        <td>{{contact.mobile}}</td>
+        <td>{{contact.fixe}}</td>
+        <td>{{contact.mail}}</td>
+        <td>{{contact.remarque}}</td>
+        <td><img src="{{contact.photo}}" class="img-circle" width="30px" height="30px"></td>
+        <td>
+          <button class="btn btn-info btn-sm" (click)="editer_contact(contact.id)">
+            <span class="glyphicon glyphicon-edit"></span> Editer
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="delete_contact(contact.id)">
+            <span class="glyphicon glyphicon-trash" ></span> Supprimer
+          </button>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <a [routerLink]="['/add']" class="btn btn-info btn-sm">
+    <span class="glyphicon glyphicon-plus-sign"></span> Ajouter un contact
+  </a>
+
+</div>
+</body>
+</html>
